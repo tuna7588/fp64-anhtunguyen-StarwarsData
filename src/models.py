@@ -46,17 +46,14 @@ class Planet(Base):
     edited = Column(String(250))
     url = Column(String(250))
 
-class FavoriteCharacter(Base):
-    __tablename__ = 'favorite_character'
+class Favorites(Base):
+    __tablename__ = 'favorites'
     id = Column(Integer, primary_key=True)
+    user_id = Column(Integer, ForeignKey('user.id'))
     user = relationship(User)
-    character = relationship(Character)
+    
 
-class FavoritePlanet(Base):
-    __tablename__ = 'favorite_planet'
-    id = Column(Integer, primary_key=True)
-    user = relationship(User)
-    planet = relationship(Planet)
+
     def to_dict(self):
         return {}
 
